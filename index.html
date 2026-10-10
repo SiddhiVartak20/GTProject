@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Neon Clash - Battle of Minds</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Animated Background -->
+    <div class="background">
+        <div class="grid"></div>
+        <div class="stars"></div>
+    </div>
+
+    <!-- ================= HOME SCREEN ================= -->
+
+    <section id="homeScreen" class="screen active">
+
+        <div class="logo-container">
+
+            <div class="logo-icon">⚡</div>
+
+            <h1>NEON CLASH</h1>
+
+            <p>BATTLE OF MINDS</p>
+
+        </div>
+
+
+        <div class="menu-card">
+
+            <h2>Choose Game Mode</h2>
+
+            <div class="mode-buttons">
+
+                <button class="mode-btn" onclick="selectMode('pvp')">
+
+                    <span class="mode-icon">👥</span>
+
+                    <div>
+                        <strong>2 PLAYERS</strong>
+                        <small>Challenge your friend</small>
+                    </div>
+
+                </button>
+
+
+                <button class="mode-btn" onclick="selectMode('ai')">
+
+                    <span class="mode-icon">🤖</span>
+
+                    <div>
+                        <strong>PLAY VS AI</strong>
+                        <small>Challenge the machine</small>
+                    </div>
+
+                </button>
+
+            </div>
+
+            <div class="game-info">
+
+                <div>
+                    <span>🎯</span>
+                    <p>3 Levels</p>
+                </div>
+
+                <div>
+                    <span>⚡</span>
+                    <p>Power Ups</p>
+                </div>
+
+                <div>
+                    <span>🏆</span>
+                    <p>Final Battle</p>
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= LEVEL SELECT ================= -->
+
+    <section id="levelScreen" class="screen">
+
+        <div class="top-title">
+
+            <button class="back-btn" onclick="goHome()">←</button>
+
+            <h1>SELECT LEVEL</h1>
+
+        </div>
+
+
+        <div class="levels">
+
+            <button class="level-card" onclick="startGame(1)">
+
+                <div class="level-number">01</div>
+
+                <div class="level-icon">🎯</div>
+
+                <h2>QUICK REFLEX</h2>
+
+                <p>Hit the glowing target before your opponent.</p>
+
+                <span class="difficulty easy">EASY</span>
+
+            </button>
+
+
+            <button class="level-card" onclick="startGame(2)">
+
+                <div class="level-number">02</div>
+
+                <div class="level-icon">🧠</div>
+
+                <h2>PATTERN HUNT</h2>
+
+                <p>Remember and reproduce the correct pattern.</p>
+
+                <span class="difficulty medium">MEDIUM</span>
+
+            </button>
+
+
+            <button class="level-card" onclick="startGame(3)">
+
+                <div class="level-number">03</div>
+
+                <div class="level-icon">⚔️</div>
+
+                <h2>NEON BATTLE</h2>
+
+                <p>Use power-ups and defeat your opponent.</p>
+
+                <span class="difficulty hard">HARD</span>
+
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= GAME SCREEN ================= -->
+
+    <section id="gameScreen" class="screen">
+
+        <!-- Header -->
+
+        <header class="game-header">
+
+            <div class="player-info player-one">
+
+                <div class="avatar">👤</div>
+
+                <div>
+                    <strong>PLAYER 1</strong>
+
+                    <div class="health-bar">
+                        <div id="health1" class="health-fill"></div>
+                    </div>
+                </div>
+
+                <span id="score1">0</span>
+
+            </div>
+
+
+            <div class="game-center">
+
+                <div id="levelName">LEVEL 1</div>
+
+                <div class="timer">
+                    <span>⏱</span>
+                    <span id="timer">30</span>
+                </div>
+
+            </div>
+
+
+            <div class="player-info player-two">
+
+                <span id="score2">0</span>
+
+                <div>
+
+                    <strong id="player2Name">PLAYER 2</strong>
+
+                    <div class="health-bar">
+                        <div id="health2" class="health-fill"></div>
+                    </div>
+
+                </div>
+
+                <div class="avatar">🤖</div>
+
+            </div>
+
+        </header>
+
+
+        <!-- Level 1 -->
+
+        <div id="level1Area" class="game-area">
+
+            <div class="instruction">
+
+                <span>🎯</span>
+
+                <p>
+                    HIT THE TARGET!
+                    <small>First player to click it gets points.</small>
+                </p>
+
+            </div>
+
+            <div id="reflexArena" class="arena">
+
+                <div id="target" class="target">
+                    ⚡
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- Level 2 -->
+
+        <div id="level2Area" class="game-area hidden">
+
+            <div class="instruction">
+
+                <span>🧠</span>
+
+                <p>
+                    REMEMBER THE PATTERN
+                    <small>Click the colors in the correct order.</small>
+                </p>
+
+            </div>
+
+
+            <div class="pattern-display">
+
+                <div id="patternMessage">
+                    Watch carefully...
+                </div>
+
+                <div id="patternButtons" class="pattern-buttons">
+
+                    <button class="color-btn red" data-color="red"></button>
+
+                    <button class="color-btn blue" data-color="blue"></button>
+
+                    <button class="color-btn green" data-color="green"></button>
+
+                    <button class="color-btn yellow" data-color="yellow"></button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- Level 3 -->
+
+        <div id="level3Area" class="game-area hidden">
+
+            <div class="instruction">
+
+                <span>⚔️</span>
+
+                <p>
+                    NEON BATTLE
+                    <small>Collect targets and power-ups.</small>
+                </p>
+
+            </div>
+
+
+            <div id="battleArena" class="arena">
+
+                <div id="battleTarget" class="battle-target">
+                    ⚡
+                </div>
+
+            </div>
+
+
+            <div class="power-ups">
+
+                <button onclick="activatePower('double')">
+                    ⚡ 2X POINTS
+                </button>
+
+                <button onclick="activatePower('shield')">
+                    🛡️ SHIELD
+                </button>
+
+                <button onclick="activatePower('speed')">
+                    🚀 SPEED
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- Controls -->
+
+        <div class="controls">
+
+            <button onclick="pauseGame()">⏸ PAUSE</button>
+
+            <button onclick="restartCurrentGame()">🔄 RESTART</button>
+
+            <button onclick="goHome()">🏠 HOME</button>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= PAUSE ================= -->
+
+    <div id="pauseOverlay" class="overlay">
+
+        <div class="result-card">
+
+            <div class="result-icon">⏸</div>
+
+            <h1>GAME PAUSED</h1>
+
+            <button onclick="resumeGame()" class="primary-btn">
+                RESUME
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- ================= RESULT ================= -->
+
+    <div id="resultOverlay" class="overlay">
+
+        <div class="result-card">
+
+            <div id="resultIcon" class="result-icon">
+                🏆
+            </div>
+
+            <h1 id="resultTitle">PLAYER 1 WINS!</h1>
+
+            <p id="resultMessage">
+                Amazing performance!
+            </p>
+
+
+            <div class="final-score">
+
+                <div>
+                    <span>PLAYER 1</span>
+                    <strong id="finalScore1">0</strong>
+                </div>
+
+                <div class="vs">VS</div>
+
+                <div>
+                    <span id="finalPlayer2">PLAYER 2</span>
+                    <strong id="finalScore2">0</strong>
+                </div>
+
+            </div>
+
+
+            <div class="result-buttons">
+
+                <button class="primary-btn" onclick="restartCurrentGame()">
+                    🔄 PLAY AGAIN
+                </button>
+
+                <button class="secondary-btn" onclick="goHome()">
+                    🏠 HOME
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <script src="script.js"></script>
+
+</body>
+</html>
